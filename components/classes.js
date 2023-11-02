@@ -25,7 +25,7 @@ export default class Library {
     }
 
     addBook(title,author,pages,read) {
-        if(this.sizeOf() >= 10){
+        if(this.sizeOf() >= 8){
             return;
         }
         const newBook = new Book(title,author,pages,read);

@@ -77,6 +77,8 @@ if(localStorage.key('Library') && localStorage.key('Size')){
 
         library.addBook(title,author,pages,read);
         document.querySelector('form').reset();
+        document.querySelector('#True').disabled = false;
+        document.querySelector('#False').disabled = false;
         document.querySelector('.modalclass').close();
       }else{
         return 'Please Fill Out The Form!';
