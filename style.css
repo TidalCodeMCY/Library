@@ -7,7 +7,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     display: grid;
-    grid-template-rows: 20% 75% 5%;
+    grid-template-rows: 15% 80% 5%;
 }
 
 /* Handles the footer css */
@@ -15,6 +15,7 @@ footer {
     display: grid;
     grid-template-columns: 50% 50%;
     align-items: center;
+    border-top: 1px solid burlywood;
 }
 
 .footerimg {
@@ -28,17 +29,22 @@ footer {
     display: grid;
     justify-items: end;
     margin-right: 10px;
+
 }
 
 /* Handles the header css */
 header {
     display: grid;
     grid-template-columns: 70% 30%;
+    border-bottom: 1px solid burlywood;
+    box-shadow: 0 0 4px 0 burlywood;
 }
 
 .hone {
     display: grid;
     justify-items: center;
+    font-size: 55px;
+    color: burlywood;
 }
 
 .addbookbtn {
@@ -193,11 +199,12 @@ header {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     grid-template-rows: auto auto;
-    width: 80%;
+    width: 70%;
     height: 100%;
     position: relative;
     right: -10%;
     overflow: hidden;
+    padding-top: 50px;
 }
 
 .bookdivs {

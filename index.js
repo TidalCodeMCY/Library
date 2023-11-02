@@ -1,11 +1,17 @@
 import Library from "./components/classes.js";
 import { createModal } from "./components/createmodal.js";
-import deleteCard from "./components/deletecard.js";
 import { getUserChoices } from "./components/getuser.js";
 
 
 createModal();
-const library = new Library();
+let library = new Library();
+
+if(localStorage.key('Library') && localStorage.key('Size')){
+  const storedLib = JSON.parse(localStorage.getItem('Library'));
+  const storedSize = JSON.parse(localStorage.getItem('Size'));
+  library = new Library(storedLib,storedSize);
+  library.printBooks();
+}
 
 (function events() {
     const maxChecks = 1;
@@ -42,7 +48,6 @@ const library = new Library();
 
     document.querySelector('.bookcontainer').addEventListener('click', (e) =>{
       const target = e.target;
-      const classes = target.classList.value;
       library.removeBook(`${target.id}`);
     })
 
@@ -71,6 +76,7 @@ const library = new Library();
         });
 
         library.addBook(title,author,pages,read);
+        document.querySelector('form').reset();
         document.querySelector('.modalclass').close();
       }else{
         return 'Please Fill Out The Form!';
@@ -78,3 +84,4 @@ const library = new Library();
       
     })
 })();
+

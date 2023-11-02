@@ -1,4 +1,3 @@
-import deleteCard from "./deletecard.js";
 import resetPage from "./resetpage.js";
 
 
@@ -12,9 +11,9 @@ class Book {
 }
 
 export default class Library {
-    constructor(array){
+    constructor(array,size){
         this.library = array || [];
-        this.size = 0;
+        this.size = size || 0;
     }
 
     isEmpty() {
@@ -33,6 +32,7 @@ export default class Library {
         this.library.push(newBook);
         this.size++;
         this.printBooks();
+        this.saveBooks();
         return this.library;
     }
 
@@ -43,7 +43,8 @@ export default class Library {
 
         if(this.sizeOf() === 1 && this.library[0].title === title){
             this.library.pop();
-            this.size--;  
+            this.size--; 
+            this.saveBooks(); 
             resetPage('bookcontainer'); 
         }
 
@@ -52,11 +53,13 @@ export default class Library {
         this.library.forEach(book => {
             if(book.title === title){
                 this.library.splice(position,1);
-                this.size--;
-                this.printBooks();
+                this.size--;   
             }
             position++;
         })
+
+       this.printBooks(); 
+       this.saveBooks();
     }
 
     printBooks() {
@@ -109,12 +112,9 @@ export default class Library {
     saveBooks() {
         /*After I finish the createpage function and some user interaction we will create and 
         utilize this to save the library the user created in local storage. */
-    }
-
-    pullBooks(){
-        /*After I finish the createpage function and some user interaction we will create and 
-        utilize this to pull the library the user created in local storage and set that value to the 
-        original librarys value. This should allow for persistant libraries but we will see.*/
+        //Save the library and the size.
+        localStorage.setItem('Library', JSON.stringify(this.library));
+        localStorage.setItem('Size', JSON.stringify(this.size));
     }
 }
 
