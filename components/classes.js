@@ -1,3 +1,4 @@
+import deleteCard from "./deletecard.js";
 import resetPage from "./resetpage.js";
 
 
@@ -11,23 +12,26 @@ class Book {
 }
 
 export default class Library {
-    constructor(){
-        this.library = [];
-        this.length = 0;
+    constructor(array){
+        this.library = array || [];
+        this.size = 0;
     }
 
     isEmpty() {
-        return this.length === 0;
+        return this.size === 0;
     }
 
-    size() {
-        return this.length;
+    sizeOf() {
+        return this.size;
     }
 
     addBook(title,author,pages,read) {
+        if(this.sizeOf() >= 10){
+            return;
+        }
         const newBook = new Book(title,author,pages,read);
         this.library.push(newBook);
-        this.length++;
+        this.size++;
         this.printBooks();
         return this.library;
     }
@@ -37,18 +41,22 @@ export default class Library {
             return 'Library is empty can not delete!';
         }
 
+        if(this.sizeOf() === 1 && this.library[0].title === title){
+            this.library.pop();
+            this.size--;  
+            resetPage('bookcontainer'); 
+        }
+
         let position = 0;
 
         this.library.forEach(book => {
             if(book.title === title){
-                this.length--;
-                return this.library.splice(position,1);
+                this.library.splice(position,1);
+                this.size--;
+                this.printBooks();
             }
             position++;
-        });
-
-        this.printBooks();
-        return this.library;
+        })
     }
 
     printBooks() {
@@ -70,7 +78,6 @@ export default class Library {
             const bookRead = document.createElement('button');
             const bookDelete = document.createElement('p');
             // This creates id/class for each piece of the card for styling and more.
-            bookDiv.id = `${book.title}`;
             bookDiv.classList = 'bookdivs';
             bookTitle.id = `${book.title} inner`;
             bookTitle.classList = 'booktitles';
@@ -81,6 +88,7 @@ export default class Library {
             bookRead.id = `${book.read}`;
             bookRead.classList = 'bookread';
             bookDelete.classList = 'deletebtns';
+            bookDelete.id = `${book.title}`;
             //This creates the text content for each piece of the card
             bookTitle.textContent = `${book.title}`;
             bookAuthor.textContent = `${book.author}`;
@@ -96,8 +104,6 @@ export default class Library {
             //Appending card to the page
             container.appendChild(bookDiv);
         });
-
-        return this.library;
     }
 
     saveBooks() {

@@ -1,7 +1,7 @@
 export const createModal = () => {
     /* Create the variables for the modal. This is made each 
     time the page is initialized but is hidden until made active.*/
-    const container = document.querySelector('.bookcontainer');
+    const container = document.querySelector('header');
     const modalContainer = document.createElement('dialog');
     const form = document.createElement('form');
     const titleLabel = document.createElement('label');
@@ -51,15 +51,27 @@ export const createModal = () => {
     falseLbl.textContent = 'False';
     submit.textContent = 'Add This Book!';
     cancel.textContent = 'X';
-    //Assign all the input types
+    //Assign all the input types and names
     titleInput.type = 'text';
+    titleInput.name = 'titlename';
+    titleLabel.name = 'titlename';
     authorInput.type = 'text';
+    authorInput.name = 'authorname';
+    authorLabel.name = 'authorname';
     pagesInput.type = 'text';
+    pagesInput.name = 'pagesname';
+    pagesLabel.name = 'pagesname';
     submit.type = 'submit';
+    submit.name = 'forms';
     trueBtn.type = 'checkbox';
     falseBtn.type = 'checkbox';
+    form.name = 'forms';
+    //Assigns all the required attributes
+    titleInput.required = true;
+    authorInput.required = true;
+    pagesInput.required = true;
     //Appends all of the items to the form.
-    form.appendChild(cancel);
+    modalContainer.appendChild(cancel);
     form.appendChild(titleLabel);
     form.appendChild(titleInput);
     form.appendChild(authorLabel);
