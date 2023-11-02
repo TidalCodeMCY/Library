@@ -48,6 +48,12 @@ if(localStorage.key('Library') && localStorage.key('Size')){
 
     document.querySelector('.bookcontainer').addEventListener('click', (e) =>{
       const target = e.target;
+      if(target.id === 'True'){
+        library.reassignRead(target.name, 'False');
+      }else if(target.id === 'False'){
+        library.reassignRead(target.name, 'True');
+      }
+
       library.removeBook(`${target.id}`);
     })
 

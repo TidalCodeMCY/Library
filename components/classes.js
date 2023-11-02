@@ -89,6 +89,7 @@ export default class Library {
             bookPage.id = `${book.pages}`;
             bookPage.classList = 'bookpages';
             bookRead.id = `${book.read}`;
+            bookRead.name = `${book.read} ${book.title}`;
             bookRead.classList = 'bookread';
             bookDelete.classList = 'deletebtns';
             bookDelete.id = `${book.title}`;
@@ -115,6 +116,22 @@ export default class Library {
         //Save the library and the size.
         localStorage.setItem('Library', JSON.stringify(this.library));
         localStorage.setItem('Size', JSON.stringify(this.size));
+    }
+
+    reassignRead(name,readstatus){
+        if(this.isEmpty()){
+            return 'Library is empty!';
+        }
+
+        this.library.forEach(book => {
+            if(`${book.read} ${book.title}` === name){
+                book.read = readstatus;
+                console.log(`${book.read} ${book.title}`,this.read);
+                this.printBooks();
+                this.saveBooks();
+            }
+        })
+
     }
 }
 

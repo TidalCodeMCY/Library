@@ -192,8 +192,8 @@ header {
 /* This css will take care of the book objects css */
 .bookcontainer {
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
     width: 80%;
     height: 100%;
     position: relative;
@@ -201,7 +201,7 @@ header {
     overflow: hidden;
     background-color: aliceblue;
     align-items: center;
-    justify-content: space-around;
+    justify-items: center;
     border-radius: 4px;
 }
 
@@ -217,8 +217,6 @@ header {
     background-color: white;
     color: brown;
     box-shadow: 0 0 10px 0 burlywood;
-    position: relative;
-
 }
 
 .deletebtns {
