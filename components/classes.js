@@ -28,6 +28,19 @@ export default class Library {
         if(this.sizeOf() >= 8){
             return;
         }
+
+        let exists = false;
+
+        this.library.forEach(book => {
+            if(book.title === title){
+                exists = true;
+            }
+        });
+
+        if(exists === true){
+            return console.log('Book Already Exists!');
+        }
+
         const newBook = new Book(title,author,pages,read);
         this.library.push(newBook);
         this.size++;
